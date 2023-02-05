@@ -8,6 +8,13 @@ let graphics
 let graphics2
 let graphics3
 
+let sliderAmbLight
+let sliderDirLight
+
+let colorPicker1
+let colorPicker2
+let colorPicker3
+
 function preload() {
     kitten = loadImage('kitten0.jpg')
     planetex = loadImage('PlaneTex.png')
@@ -22,16 +29,6 @@ function preload() {
 function setup() {
     createCanvas(400, 400, WEBGL);
     perspective(PI / 3, width / height, ((height / 2) / tan(PI / 6)) / 10, ((height / 2) / tan(PI / 6)) * 3)
-
-    graphics = createGraphics(200, 200)
-    graphics.fill(0, 0, 255)
-    graphics.rect(0, 0, 100, 100)
-    graphics.fill(255, 0, 0)
-    graphics.rect(100, 0, 100, 100)
-    graphics.fill(255, 255, 0)
-    graphics.rect(0, 100, 100, 100)
-    graphics.fill(200)
-    graphics.rect(100, 100, 100, 100)
 
     //tree
     graphics2 = createGraphics(200, 200)
@@ -51,25 +48,79 @@ function setup() {
     // cam = createCapture(VIDEO)
     // cam.size(320, 240)
     // cam.hide()
+
+
+    // Controls
+    // AmbLight
+    sliderAmbLight = createSlider(0, 255, 100);
+    sliderAmbLight.position(450, 30);
+    sliderAmbLight.style('width', '80px');
+    let p1 = createP('Ambient Light');
+    p1.style('font-size', '16px');
+    p1.style('margin', '0px');
+    p1.position(550, 30);
+    // DirLight
+    sliderDirLight = createSlider(0, 255, 200);
+    sliderDirLight.position(450, 60);
+    sliderDirLight.style('width', '80px');
+    let p2 = createP('Directional Light');
+    p2.style('font-size', '16px');
+    p2.style('margin', '0px');
+    p2.position(550, 60);
+    // ColorPickers
+    colorPicker1 = createColorPicker('#FF00FF');
+    colorPicker1.position(450, 90);
+    let p3 = createP('Plane Primary Color');
+    p3.style('font-size', '16px');
+    p3.style('margin', '0px');
+    p3.position(550, 90);
+    colorPicker2 = createColorPicker('#FF0000');
+    colorPicker2.position(450, 120);
+    let p4 = createP('Plane Secondary Color');
+    p4.style('font-size', '16px');
+    p4.style('margin', '0px');
+    p4.position(550, 120);
+    colorPicker3 = createColorPicker('#FFFF00');
+    colorPicker3.position(450, 150);
+    let p5 = createP('Plane Tertiary Color');
+    p5.style('font-size', '16px');
+    p5.style('margin', '0px');
+    p5.position(550, 150);
 }
 
 function draw() {
+
+    graphics = createGraphics(200, 200)
+    graphics.fill(colorPicker1.color())
+    graphics.rect(0, 0, 100, 100)
+    graphics.fill(colorPicker2.color())
+    graphics.rect(100, 0, 100, 100)
+    graphics.fill(colorPicker3.color())
+    graphics.rect(0, 100, 100, 100)
+    graphics.fill(200)
+    graphics.rect(100, 100, 100, 100)
+
     // Lighting
+    let val1 = sliderAmbLight.value();
+    let val2 = sliderDirLight.value();
+
     // let dx = mouseX - width / 2
     // let dy = mouseY - height / 2
     // let v = createVector(-dx, -dy, -500)
     // v.normalize();
     // directionalLight(255, 255, 255, v)
     // pointLight(255, 0, 0, mouseX - 200, mouseY - 200, 200)
-    directionalLight(255, 255, 255, 0, 1, -1)
-    ambientLight(100)
+    directionalLight(val2, val2, val2, 0, 1, -1)
+    ambientLight(val1)
+
+
 
     let sinAngle = 0
     let sinAngle2 = 0
     let sinAngle3 = 0
 
 
-    background(0, 200, 255);
+    background(0, 4 * max(val1, val2) / 5, max(val1, val2));
 
     angle += 0.05
     sinAngle += sin(angle)
@@ -127,7 +178,7 @@ function draw() {
         noStroke()
         rotateX(PI)
         // randomSeed(300)
-        translate(i * 50, -140, (angle * 80 + random(-1000, 1000)) % 1500 - 750)
+        translate(i * 50, -140, (angle * 80 + random(-1000, 1000)) % 1200 - 600)
         ambientMaterial(255)
         texture(graphics2)
         scale(30);
@@ -141,7 +192,7 @@ function draw() {
         noStroke()
         rotateX(PI)
         // randomSeed(300)
-        translate(i * 120, 30 + random(-150, 300), (angle * 80 + random(-1000, 1000)) % 1500 - 750)
+        translate(i * 120, 30 + random(-100, 300), (angle * 80 + random(-1000, 1000)) % 1400 - 700)
         ambientMaterial(255)
         texture(graphics3)
         scale(30);
