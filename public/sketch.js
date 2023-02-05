@@ -30,6 +30,9 @@ function setup() {
     createCanvas(400, 400, WEBGL);
     perspective(PI / 3, width / height, ((height / 2) / tan(PI / 6)) / 10, ((height / 2) / tan(PI / 6)) * 3)
 
+    //Plane
+    graphics = createGraphics(200, 200)
+
     //tree
     graphics2 = createGraphics(200, 200)
     //leaves
@@ -90,7 +93,7 @@ function setup() {
 
 function draw() {
 
-    graphics = createGraphics(200, 200)
+    graphics.noStroke()
     graphics.fill(colorPicker1.color())
     graphics.rect(0, 0, 100, 100)
     graphics.fill(colorPicker2.color())
