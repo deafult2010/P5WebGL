@@ -15,7 +15,7 @@ function preload() {
     planeBody = loadModel('AirPlaneBody2.obj')
     planeProp = loadModel('AirPlaneProp2.obj')
     tree1 = loadModel('lowpolytree2.obj')
-    cloud = loadModel('cloud.obj')
+    cloud = loadModel('cloud2.obj')
 
 }
 
@@ -45,7 +45,8 @@ function setup() {
     //cloud
     graphics3 = createGraphics(200, 200)
     //leaves
-    graphics3.fill(220)
+    graphics3.noStroke()
+    graphics3.fill(240, 200)
     graphics3.rect(0, 0, 200, 200)
     // cam = createCapture(VIDEO)
     // cam.size(320, 240)
@@ -135,12 +136,12 @@ function draw() {
     }
 
     randomSeed(99);
-    for (let i = -15; i < 15; i++) {
+    for (let i = -10; i < 10; i++) {
         push()
         noStroke()
         rotateX(PI)
         // randomSeed(300)
-        translate(i * 50, 30 + random(0, 200), (angle * 80 + random(-1000, 1000)) % 1500 - 750)
+        translate(i * 120, 30 + random(-150, 300), (angle * 80 + random(-1000, 1000)) % 1500 - 750)
         ambientMaterial(255)
         texture(graphics3)
         scale(30);
