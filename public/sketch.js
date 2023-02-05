@@ -54,41 +54,49 @@ function setup() {
 
 
     // Controls
+    let p0 = createP('Lighting');
+    p0.style('font-size', '24px');
+    p0.style('margin', '0px');
+    p0.position(450, 30);
     // AmbLight
     sliderAmbLight = createSlider(0, 255, 100);
-    sliderAmbLight.position(450, 30);
-    sliderAmbLight.style('width', '80px');
-    let p1 = createP('Ambient Light');
-    p1.style('font-size', '16px');
+    sliderAmbLight.position(450, 80);
+    sliderAmbLight.style('width', '130px');
+    let p1 = createP('Ambient');
+    p1.style('font-size', '24px');
     p1.style('margin', '0px');
-    p1.position(550, 30);
+    p1.position(600, 80);
     // DirLight
-    sliderDirLight = createSlider(0, 255, 200);
-    sliderDirLight.position(450, 60);
-    sliderDirLight.style('width', '80px');
-    let p2 = createP('Directional Light');
-    p2.style('font-size', '16px');
+    sliderDirLight = createSlider(0, 255, 255);
+    sliderDirLight.position(450, 130);
+    sliderDirLight.style('width', '130px');
+    let p2 = createP('Directional');
+    p2.style('font-size', '24px');
     p2.style('margin', '0px');
-    p2.position(550, 60);
+    p2.position(600, 130);
     // ColorPickers
-    colorPicker1 = createColorPicker('#FF00FF');
-    colorPicker1.position(450, 90);
-    let p3 = createP('Plane Primary Color');
-    p3.style('font-size', '16px');
+    let p03 = createP('Plane Colours');
+    p03.style('font-size', '24px');
+    p03.style('margin', '0px');
+    p03.position(450, 180);
+    colorPicker1 = createColorPicker('#0000FF');
+    colorPicker1.position(450, 230);
+    let p3 = createP('Primary');
+    p3.style('font-size', '24px');
     p3.style('margin', '0px');
-    p3.position(550, 90);
+    p3.position(510, 230);
     colorPicker2 = createColorPicker('#FF0000');
-    colorPicker2.position(450, 120);
-    let p4 = createP('Plane Secondary Color');
-    p4.style('font-size', '16px');
+    colorPicker2.position(450, 280);
+    let p4 = createP('Secondary');
+    p4.style('font-size', '24px');
     p4.style('margin', '0px');
-    p4.position(550, 120);
+    p4.position(510, 280);
     colorPicker3 = createColorPicker('#FFFF00');
-    colorPicker3.position(450, 150);
-    let p5 = createP('Plane Tertiary Color');
-    p5.style('font-size', '16px');
+    colorPicker3.position(450, 330);
+    let p5 = createP('Tertiary');
+    p5.style('font-size', '24px');
     p5.style('margin', '0px');
-    p5.position(550, 150);
+    p5.position(510, 330);
 }
 
 function draw() {
